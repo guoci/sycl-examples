@@ -84,7 +84,7 @@ int main(const int argc, const char *const *const argv) {
                     const auto contact_dist = 2 * particle_radius / particles_window_width;
                     const auto collide = distsq < contact_dist * contact_dist;
                     if (collide) {
-                        sycl::atomic_ref<int, sycl::memory_order::relaxed, sycl::memory_scope::device, sycl::access::address_space::global_space>
+                        sycl::atomic_ref<int, sycl::memory_order::acq_rel, sycl::memory_scope::device, sycl::access::address_space::global_space>
                                 self_mod{mod[it]}, other_mod{mod[i]};
                         // allow only one collision for self_mod particle
                         const auto s = self_mod.fetch_add(1);
