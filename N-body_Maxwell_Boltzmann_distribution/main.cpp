@@ -60,13 +60,13 @@ int main(const int argc, const char *const *const argv) {
                 auto v1 = vel[it];
                 const auto p1 = pos[it];
                 if (p1.x() > 1 - radius)
-                    v1 = {-sycl::abs(v1.x()), v1.y()};
+                    v1 = {-sycl::fabs(v1.x()), v1.y()};
                 if (p1.x() < 0 + radius)
-                    v1 = {sycl::abs(v1.x()), v1.y()};
+                    v1 = {sycl::fabs(v1.x()), v1.y()};
                 if (p1.y() > 1 - radius)
-                    v1 = {v1.x(), -sycl::abs(v1.y())};
+                    v1 = {v1.x(), -sycl::fabs(v1.y())};
                 if (p1.y() < 0 + radius)
-                    v1 = {v1.x(), sycl::abs(v1.y())};
+                    v1 = {v1.x(), sycl::fabs(v1.y())};
                 vel[it] = v1;
             });
         });
